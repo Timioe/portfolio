@@ -1,10 +1,10 @@
-package versys.bib.portfolio;
+package versys.portfolio.Portfolio;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BibliothekApplicationTests {
+class PortfolioApplicationTests {
 
 	@Test
 	void contextLoads() {

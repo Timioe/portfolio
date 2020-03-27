@@ -1,6 +1,6 @@
-package versys.bib.portfolio.rep;
+package versys.portfolio.rep;
 
-import versys.bib.portfolio.model.Bibliothek;
+import versys.portfolio.model.Bibliothek;
 import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
