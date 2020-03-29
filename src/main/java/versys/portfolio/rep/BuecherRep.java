@@ -13,7 +13,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface BuecherRep extends PagingAndSortingRepository<Buecher, Long> {
     
     List<Buecher> findByName(@Param("name") String name);
-    Buecher findByBookId(@Param("bookId") String imdbId);
     List<Buecher> findByYearFrom(@Param("yearFrom") int yearFrom);
     
 }
