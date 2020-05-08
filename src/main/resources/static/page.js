@@ -1,53 +1,44 @@
 const API_URL = "http://localhost:9090/api";
 
 window.addEventListener("load", async () => {
-	// Vorhandene Bibliotheken abrufen und anzeigen
-	getBibs();
+	// Vorhandene Einträge abrufen und anzeigen
+	
+	//Bibliotheken auch dynamisch abrufen und anhand deren Namen dann getEntries aufrufen und evtl für jede Bib einen neuen div erzeugen, in den dann
+	//der Name der bib und die bücher in einer liste drunter gelegt werden können
+	getEntries('kit_ka');
+	getEntries('dhbw_ka')
 
 	// Old-School Abschicken des Formulars unterdrücken
 	event.preventDefault();
 	return false;
 });
 
-async function getBibs() {
+async function getEntries(sName) {
+	if (sName.trim() === "") return;
+
 	// Backend-API aufrufen
-	let entry = await fetch(API_URL + "/bibliotheken/", {
+	let entry = await fetch(API_URL + "/bibliotheken/" + sName + "/buecher", {
 		method: "GET"
 	});
 
-	// Gespeicherte BIbliotheken anzeigen
-	let entries = await entry.json();
-	entries._embedded.bibliotheken.forEach(element => displayBibs(element));
-}
-
-async function displayBibs(entry) {
-	// Bibliothek anzeigen
-	let div = document.getElementById("data");
-	var h2 = document.createElement('h2');
-	h2.setAttribute("id", entry.name)
-	h2.appendChild(document.createTextNode(entry.name));
-	div.appendChild(h2);
-
-	// Bücher der Bibliothek besorgen und anzeigen
-	// Backend-API aufrufen, URL durch href gesetzt
-	let entryBuch = await fetch(entry._links.self.href + "/buecher", {
-		method: "GET"
-	});
-
-	// Einträge in Konsole anzeigen
-	console.log(entryBuch);
-	
+		let oldName = "";
 	// Gespeicherten Eintrag anzeigen
-	let entries = await entryBuch.json();
-	entries._embedded.buecher.forEach(element => displayEntry(element, entry.name));
-
+	let entries = await entry.json();
+	entries._embedded.buecher.forEach(element => displayEntry(element, sName, oldName));
 }
 
-function displayEntry(entry, bibName) {
-	// Buch anzeigen
-	let h2 = document.getElementById(bibName);
+function displayEntry(entry, sName, oldName) {
+	let div = document.getElementById("data");
+
+	if (sName != oldName) {
+		var h2 = document.createElement('h2');
+		h2.appendChild(document.createTextNode(sName));
+		div.appendChild(h2);
+		oldName = sName;
+	}
 	var ul = document.createElement('ul');
-	h2.appendChild(ul);
+	div.appendChild(ul);
+
 	var item = document.createElement('li');
 	item.appendChild(document.createTextNode(entry.name));
 	ul.appendChild(item);
