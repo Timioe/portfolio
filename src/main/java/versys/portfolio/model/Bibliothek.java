@@ -31,5 +31,6 @@ public class Bibliothek implements Serializable {
 
     @OneToMany(mappedBy = "bibliothek", cascade = {CascadeType.REMOVE})
     List<Buecher> buecher = new ArrayList<>();
+    
 }
 
