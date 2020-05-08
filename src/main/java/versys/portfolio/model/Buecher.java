@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
@@ -49,8 +50,9 @@ public class Buecher implements Serializable {
     @Lob
     private String description = "";
     
-    @ManyToOne
-    private Bibliothek bibliothek = null;
+    @ManyToMany
+    List<Bibliothek> bibliothek = new ArrayList<>();
+   
     
 
     
