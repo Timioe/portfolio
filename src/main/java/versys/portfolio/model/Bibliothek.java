@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,8 +30,8 @@ public class Bibliothek implements Serializable {
     @NotNull(message = "Der Name darf nicht leer sein.")
     private String name = "";
 
-    @OneToMany(mappedBy = "bibliothek", cascade = {CascadeType.REMOVE})
-    List<Buecher> buecher = new ArrayList<>();
+    @ManyToMany(mappedBy = "bibliothek", cascade = {CascadeType.REMOVE})
+    List<Buch> buecher = new ArrayList<>();
     
 }
 

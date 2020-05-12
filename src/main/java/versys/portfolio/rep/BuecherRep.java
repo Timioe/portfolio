@@ -1,6 +1,6 @@
 package versys.portfolio.rep;
 
-import versys.portfolio.model.Buecher;
+import versys.portfolio.model.Buch;
 import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -11,9 +11,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  * Die Methoden können für die weitere Implementierung verwendet werden.
  */
 @RepositoryRestResource(collectionResourceRel = "buecher", path = "buecher")
-public interface BuecherRep extends PagingAndSortingRepository<Buecher, Long> {
+public interface BuecherRep extends PagingAndSortingRepository<Buch, Long> {
     
-    List<Buecher> findByName(@Param("name") String name);
-    List<Buecher> findByYearFrom(@Param("yearFrom") int yearFrom);
+    List<Buch> findByName(@Param("name") String name);
+    List<Buch> findByYearFrom(@Param("yearFrom") int yearFrom);
     
 }
